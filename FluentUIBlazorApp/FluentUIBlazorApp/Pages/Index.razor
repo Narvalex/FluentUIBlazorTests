@@ -13,15 +13,3 @@
         <SurveyPrompt Title="How is Blazor working for you?" />
     </FluentCard>
 </FluentDesignSystemProvider>
-
-@code {
-    protected override void OnInitialized()
-    {
-        MenuProvider.Publish(new List<MenuItem>
-        {
-            new MenuItem { Icon = new Icons.Regular.Size24.Home(), Text = "Home", Href = "/" },
-            new MenuItem { Icon = new Icons.Regular.Size24.NumberCircle1(), Text = "Counter", Href = "/counter" },
-            new MenuItem { Icon = new Icons.Regular.Size24.CalendarAgenda(), Text = "Fetch data", Href = "/fetchdata" }
-        });
-    }
-}

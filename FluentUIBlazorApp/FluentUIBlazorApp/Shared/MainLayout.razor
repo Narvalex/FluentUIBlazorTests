@@ -1,11 +1,12 @@
 ﻿@inherits LayoutComponentBase
+@implements IDisposable
 
 <PageTitle>FluentUIBlazorApp</PageTitle>
 
 <FluentLayout>
 
     <FluentHeader>
-        Some Header Text
+        <a href="/" style="color: white;">Header</a>
         <FluentSpacer />
         About
     </FluentHeader>
@@ -13,27 +14,40 @@
     <FluentStack Orientation="Orientation.Horizontal" Width="100%">
 
         <FluentNavMenu Width="150">
-            @foreach (var item in this.menu)
-            {
-                <FluentNavMenuLink Icon="@item.Icon" Text="@item.Text" Href="@item.Href" />
-            }
+            <FluentNavMenuLink Icon="new Icons.Regular.Size24.Home()" Text="Home" Href="/" />
+            <FluentNavMenuLink Icon="new Icons.Regular.Size24.NumberCircle1()" Text="Counter" Href="/counter" />
+            <FluentNavMenuLink Icon="new Icons.Regular.Size24.CalendarAgenda()" Text="Fetch data" Href="/fetchdata" />
         </FluentNavMenu>
 
         <FluentBodyContent>
             @Body
+            <FluentFooter Style="@("height: 40px; color: white; text-align: center;")">
+                Footer Text
+            </FluentFooter>
         </FluentBodyContent>
     </FluentStack>
-
-    <FluentFooter Style="@("height: 40px; color: white; text-align: center;")">
-        Footer Text
-    </FluentFooter>
 </FluentLayout>
 
+@inject NavigationManager navigationManager;
+
 @code {
-    private List<MenuItem> menu = new List<MenuItem>();
+
+    string id = string.Concat(Guid.NewGuid().ToString().TakeLast(4));
 
     protected override void OnInitialized()
     {
-        MenuProvider.Subscribe(x => this.menu = x);
+        this.navigationManager.LocationChanged += this.Handler;
+        Console.WriteLine("Initialized " + id);
+    }
+
+    private void Handler(object? sender, LocationChangedEventArgs args)
+    {
+        Console.WriteLine("Location changed from " + id);
+    }
+
+    public void Dispose()
+    {
+        this.navigationManager.LocationChanged -= this.Handler;
+        Console.WriteLine("Disposed " + id);
     }
 }

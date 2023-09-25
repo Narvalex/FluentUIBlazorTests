@@ -1,4 +1,11 @@
-﻿<Router AppAssembly="@typeof(App).Assembly">
+﻿
+<Router AppAssembly="@typeof(App).Assembly">
+    <Navigating>
+        <!-- Lazy loading... -->
+        <div>
+            <p>The requested page is loading...</p>
+        </div>
+    </Navigating>
     <Found Context="routeData">
         <RouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)" />
     </Found>
