@@ -17,6 +17,11 @@
 @code {
     protected override void OnInitialized()
     {
+        AddMenu();
+    }
+
+    public static void AddMenu()
+    {
         MainLayout.menu = new List<MenuItem>
         {
             new MenuItem
