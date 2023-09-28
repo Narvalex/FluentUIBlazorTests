@@ -1,0 +1,35 @@
+﻿@page "/sub-page"
+
+<h3>SubPage</h3>
+
+@code {
+    protected override void OnInitialized()
+    {
+        LoadSubPageMenu();
+    }
+
+    public static void LoadSubPageMenu()
+    {
+        MainLayout.menu = new List<MenuItem>
+        {
+            new MenuItem
+            {
+                Icon = new Icons.Regular.Size24.Home(),
+                Text = "SubPage",
+                Href = "/sub-page"
+            },
+            new MenuItem
+            {
+                Icon = new Icons.Regular.Size24.NumberCircle1(),
+                Text = "Counter",
+                Href = "/sub-page/counter"
+            },
+            new MenuItem
+            {
+                Icon = new Icons.Regular.Size24.CalendarAgenda(),
+                Text = "Fetch Data",
+                Href = "/sub-page/fetchdata"
+            }
+        };
+    }
+}

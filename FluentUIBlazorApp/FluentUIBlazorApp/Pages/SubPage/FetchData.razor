@@ -1,4 +1,4 @@
-@page "/fetchdata"
+@page "/sub-page/fetchdata"
 @inject HttpClient Http
 
 <PageTitle>Weather forecast</PageTitle>
@@ -23,6 +23,11 @@ else
 
 @code {
     private IQueryable<WeatherForecast>? forecasts;
+
+    protected override void OnInitialized()
+    {
+        SubPage.LoadSubPageMenu();
+    }
 
     protected override async Task OnInitializedAsync()
     {

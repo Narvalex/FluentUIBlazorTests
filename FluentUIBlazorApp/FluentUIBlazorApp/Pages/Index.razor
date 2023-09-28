@@ -13,3 +13,18 @@
         <SurveyPrompt Title="How is Blazor working for you?" />
     </FluentCard>
 </FluentDesignSystemProvider>
+
+@code {
+    protected override void OnInitialized()
+    {
+        MainLayout.menu = new List<MenuItem>
+        {
+            new MenuItem
+            {
+                Icon = new Icons.Regular.Size24.Home(),
+                Text = "Home",
+                Href = "/"
+            }
+        };
+    }
+}
